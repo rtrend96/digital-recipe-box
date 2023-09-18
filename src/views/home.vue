@@ -1,9 +1,8 @@
 <template>
   <div class="_home-wrapper">
     <navBar />
-    <div class="_userName-box">
-      <userName />
-    </div>
+    <userName />
+    <recipeList />
   </div>
 </template>
 
@@ -11,23 +10,14 @@
 import { defineComponent } from 'vue'
 import userName from '../components/userName.vue'
 import navBar from '../components/navBar.vue'
+import recipeList from '../components/recipeList.vue'
 import { userInfoStore } from '../stores/user'
 
 export default defineComponent({
-  components: { userName, navBar },
+  components: { userName, navBar, recipeList },
   setup() {
     const store = userInfoStore()
     return { store }
   }
 })
 </script>
-
-<style>
-._userName-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-}
-</style>

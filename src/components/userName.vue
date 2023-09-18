@@ -1,12 +1,14 @@
 <template>
-  <div v-show="!showUserInputBox" class="_input-wrapper">
-    <h3>Welcome to Recipe Box</h3>
+  <div class="_userName-box">
+    <div v-show="!showUserInputBox" class="_input-wrapper">
+      <h3>Welcome to Recipe Box</h3>
 
-    <div class="_input-form">
-      <div class="_input-text">User Name:</div>
-      <input class="_input-field" v-model="userName" type="text" required />
+      <div class="_input-form">
+        <div class="_input-text">User Name:</div>
+        <input class="_input-field" v-model="userName" type="text" required />
+      </div>
+      <button class="_input-btn" @click="submitUserName()">Submit</button>
     </div>
-    <button class="_input-btn" @click="submitUserName()">Submit</button>
   </div>
 </template>
 
@@ -16,7 +18,7 @@ import { userInfoStore } from '../stores/user'
 export default defineComponent({
   setup() {
     const store = userInfoStore()
-    const showUserInputBox = ref(false)
+    const showUserInputBox = ref(true) // need to make false
     const userName = ref()
     function submitUserName() {
       if (userName.value == undefined) {
@@ -44,7 +46,14 @@ export default defineComponent({
   }
 })
 </script>
-<style>
+<style scoped>
+._userName-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
 ._input-wrapper {
   background-color: #fcfbf4;
   height: 200px;
