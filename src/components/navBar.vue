@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <a href="/"><img src="../assets/logo.png" alt="recipe logo" /></a>
-    <h3>{{ store.userName }}'s Recipe Box</h3>
+    <h2>{{ store.userName }}'s Recipe Box</h2>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 999;
 }
 .header * {
   display: inline;
