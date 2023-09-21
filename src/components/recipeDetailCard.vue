@@ -6,9 +6,12 @@
       :key="RecipeIndex"
     >
       <img
+        v-if="recipe.imgSrc == null"
         src="https://img.freepik.com/premium-vector/chef-recipe-logo-design-vector-illustration-white-background_685330-3470.jpg"
-        alt="Pancake"
+        alt="img"
       />
+
+      <img v-else :src="recipe.imgSrc" alt="img" />
       <div class="info">
         <h1>{{ recipe.recipeName }}</h1>
         <p>
@@ -26,6 +29,7 @@ import { recipeDetailsStore } from '../stores/recipeModule.js'
 export default defineComponent({
   setup() {
     const store = recipeDetailsStore()
+    console.log('o/p→', store.recipeDetails)
     return { store }
   }
 })
@@ -51,7 +55,7 @@ img {
     color: #351897;
     font-weight: 400;
   }
-  .container__text__star span {
+  span {
     font-size: 0.8rem;
     color: #ffa800;
     margin: -5px 0 20px;

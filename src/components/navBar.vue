@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <a href="/"><img src="../assets/logo.png" alt="recipe logo" /></a>
-    <h2>{{ store.userName }}'s Recipe Box</h2>
+    <h2>Digital Recipe Box</h2>
   </div>
 </template>
 
