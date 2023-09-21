@@ -6,7 +6,7 @@
       :key="RecipeIndex"
     >
       <img
-        src="https://norecipes.com/wp-content/uploads/2017/05/chicken-biryani-006.jpg"
+        src="https://img.freepik.com/premium-vector/chef-recipe-logo-design-vector-illustration-white-background_685330-3470.jpg"
         alt="Pancake"
       />
       <div class="info">
