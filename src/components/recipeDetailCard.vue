@@ -10,26 +10,23 @@
         src="https://img.freepik.com/premium-vector/chef-recipe-logo-design-vector-illustration-white-background_685330-3470.jpg"
         alt="img"
       />
-
       <img v-else :src="recipe.imgSrc" alt="img" />
       <div class="info">
         <h1>{{ recipe.recipeName }}</h1>
-        <p>
-          {{ recipe.description }}
-        </p>
-        <button class="btn">view recipe</button>
+        <p>{{ recipe.category }}-{{ recipe.cuisineType }}</p>
+        <button class="btn" @click="store.functionShowDetailRecipe(recipe.id)">view recipe</button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import { defineComponent } from 'vue'
 import { recipeDetailsStore } from '../stores/recipeModule.js'
+
 export default defineComponent({
   setup() {
     const store = recipeDetailsStore()
-    console.log('o/p→', store.recipeDetails)
+
     return { store }
   }
 })

@@ -9,18 +9,16 @@ export const recipeDetailsStore = defineStore(
       //   id: 1,
       //   imgSrc:
       //     'https://img.freepik.com/premium-vector/chef-recipe-logo-design-vector-illustration-white-background_685330-3470.jpg',
-      //   recipeName: 'Biryani',
-      //   category: 'Dinner',
-      //   description: 'Spicy dish made up of Rice',
-      //   HandsOnTime: 20,
-      //   TotalTime: 40,
-      //   Ingredients: [
-      //     { name: 'Water', quantity: 5 },
-      //     { name: 'Rice', quantity: 2 },
-      //     { name: 'Veggies', quantity: 5 }
-      //   ],
-      //   servingSize: 3,
-      //   recipeDetailSteps: ['Add Water', 'Add Rice']
+      // {
+      //   id: newId,
+      //   imgSrc: value.recipe.image,
+      //   recipeName: value.recipe.label,
+      //   category: value.recipe.dishType[0],
+      //   mealType: value.recipe.mealType[0],
+      //   cuisineType: value.recipe.cuisineType[0],
+      //   TotalTime: value.recipe.totalTime,
+      //   Ingredients: value.recipe.ingredients,
+      //   servingSize: value.recipe.yield
       // }
     ])
     const addRecipeDetails = (value) => {
@@ -40,6 +38,7 @@ export const recipeDetailsStore = defineStore(
       newId++
     }
     const addRecipeDetailsFromApi = (value) => {
+      console.log('o/p→', value)
       let recipeDataAdded = false
       let newId = 0
       let newRecipeData = []
@@ -47,19 +46,14 @@ export const recipeDetailsStore = defineStore(
         newRecipeData = [
           {
             id: newId,
-            imgSrc: value.strMealThumb,
-            recipeName: value.strMeal,
-            category: value.strCategory,
-            description: '',
-            HandsOnTime: 10,
-            TotalTime: 40,
-            Ingredients: [
-              { name: 'Water', quantity: 5 },
-              { name: 'Rice', quantity: 2 },
-              { name: 'Veggies', quantity: 5 }
-            ],
-            servingSize: 3,
-            recipeDetailSteps: value.strInstruction
+            imgSrc: value.recipe.image,
+            recipeName: value.recipe.label,
+            category: value.recipe.dishType[0],
+            mealType: value.recipe.mealType[0],
+            cuisineType: value.recipe.cuisineType[0],
+            TotalTime: value.recipe.totalTime,
+            servingSize: value.recipe.yield,
+            Ingredients: value.recipe.ingredients
           }
         ]
         recipeDataAdded = true
@@ -75,6 +69,13 @@ export const recipeDetailsStore = defineStore(
     const functionsShowApiRecipeForm = () => {
       showApiRecipeForm.value = !showApiRecipeForm.value
     }
+    const showDetailRecipe = ref(false)
+    const detailRecipes = ref([])
+    const functionShowDetailRecipe = (value) => {
+      console.log('o/p→', value)
+      showDetailRecipe.value = true
+      detailRecipes.value = recipeDetails.value[value]
+    }
     return {
       recipeDetails,
       addRecipeDetails,
@@ -82,7 +83,10 @@ export const recipeDetailsStore = defineStore(
       showApiRecipeForm,
       functionsShowAddRecipeForm,
       functionsShowApiRecipeForm,
-      addRecipeDetailsFromApi
+      addRecipeDetailsFromApi,
+      showDetailRecipe,
+      functionShowDetailRecipe,
+      detailRecipes
     }
   },
   { persist: true }

@@ -6,10 +6,10 @@
     </div>
     <div class="_api-search">
       <div class="_card-wrapper" v-for="(recipe, index) in recipeList" :key="index">
-        <img alt="Pancake" :src="recipe.strMealThumb" />
+        <img alt="image" :src="recipe.recipe.image" />
         <div class="info">
-          <h1>{{ recipe.strMeal }}</h1>
-          <p>{{ recipe.strCategory }}</p>
+          <h1>{{ recipe.recipe.label }}</h1>
+
           <button class="btn" @click="exportRecipe(recipe)">Export recipe</button>
         </div>
       </div>
@@ -28,13 +28,19 @@ export default defineComponent({
     const recipeList = ref([])
     const getResultValue = (value) => {
       recipeList.value = []
-      axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=' + value).then((res) => {
-        console.log('o/p→', res.data.meals)
-        let mealData = JSON.parse(JSON.stringify(res.data.meals))
-        for (const meal of mealData) {
-          recipeList.value.push(meal)
-        }
-      })
+      axios
+        .get(
+          'https://api.edamam.com/api/recipes/v2?type=public&q=' +
+            value +
+            '&app_id=b143f865&app_key=e4e9ba037563a86d04de87cf2ebc09dc'
+        )
+        .then((res) => {
+          console.log('o/p→', res.data.hits)
+          let mealData = JSON.parse(JSON.stringify(res.data.hits))
+          for (const meal of mealData) {
+            recipeList.value.push(meal)
+          }
+        })
     }
     const exportRecipe = (value) => {
       store.addRecipeDetailsFromApi(value)
@@ -86,9 +92,11 @@ img {
 }
 .info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
   h1 {
     color: #351897;
   }
@@ -109,6 +117,7 @@ img {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  float: right;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
 ._close-recipe {

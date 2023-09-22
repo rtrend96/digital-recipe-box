@@ -9,6 +9,9 @@
   <div v-show="store.showApiRecipeForm" class="_add-recipe-list">
     <apiRecipe />
   </div>
+  <div v-show="store.showDetailRecipe" class="_add-recipe-list">
+    <DetailedRecipe />
+  </div>
   <div style="display: flex; gap: 20px">
     <button class="_add-recipe" @click="store.functionsShowAddRecipeForm()">Add Recipe</button>
     <button class="_add-recipe" @click="store.functionsShowApiRecipeForm()">
@@ -23,9 +26,10 @@ import formRecipe from './formRecipe.vue'
 import apiRecipe from './apiRecipe.vue'
 import { recipeDetailsStore } from '../stores/recipeModule.js'
 import { defineComponent } from 'vue'
+import DetailedRecipe from './detailedRecipe.vue'
 
 export default defineComponent({
-  components: { recipeDetailCard, formRecipe, apiRecipe },
+  components: { recipeDetailCard, formRecipe, apiRecipe, DetailedRecipe },
   setup() {
     const store = recipeDetailsStore()
 

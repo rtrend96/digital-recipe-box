@@ -17,18 +17,18 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="input-data textarea">
-            <textarea rows="8" cols="80" required v-model="editedRecipe.description"></textarea>
+          <div class="input-data">
+            <input type="text" required v-model="editedRecipe.mealType" />
             <div class="underline"></div>
-            <label for="">description</label>
+            <label for="recipeName">Recipe Type</label>
+          </div>
+          <div class="input-data">
+            <input type="text" required v-model="editedRecipe.cuisineType" />
+            <div class="underline"></div>
+            <label for="recipeName">Cuisine Type</label>
           </div>
         </div>
         <div class="form-row">
-          <div class="input-data">
-            <input type="text" required v-model="editedRecipe.HandsOnTime" />
-            <div class="underline"></div>
-            <label for="">HandsOnTime</label>
-          </div>
           <div class="input-data">
             <input type="text" required v-model="editedRecipe.TotalTime" />
             <div class="underline"></div>
@@ -47,7 +47,7 @@
           :key="index"
         >
           <div class="input-data">
-            <input type="text" v-model="ingredient.name" required />
+            <input type="text" v-model="ingredient.food" required />
             <div class="underline"></div>
             <label for="">Ingredients Name</label>
           </div>
@@ -56,32 +56,26 @@
             <div class="underline"></div>
             <label for="">Ingredients Quantity </label>
           </div>
+          <div class="input-data">
+            <input type="text" v-model="ingredient.text" required />
+            <div class="underline"></div>
+            <label for="">Step </label>
+          </div>
           <h5 class="_add-btn" @click="removeIngredient(index)">X</h5>
         </div>
         <div class="form-row">
           <button class="_add-btn" @click="addIngredient">Add Ingredients</button>
         </div>
-        Steps
-        <div
-          class="form-row"
-          v-for="(step, index) in editedRecipe[0].recipeDetailSteps"
-          :key="index"
-        >
-          <div class="input-data">
-            <input type="text" required v-model="step.name" />
-            <div class="underline"></div>
-            <label for="">Step {{ index + 1 }}</label>
-          </div>
-          <h5 class="_add-btn" @click="removeStep(index)">X</h5>
-        </div>
-        <div class="form-row">
-          <button class="_add-btn" @click="addStep()">Add Step</button>
-        </div>
       </form>
     </div>
-    <button class="_save-recipe" @click="addRecipe(), store.functionsShowAddRecipeForm()">
-      Save Recipe
-    </button>
+    <div>
+      <button class="_save-recipe" @click="addRecipe(), store.functionsShowAddRecipeForm()">
+        Save Recipe
+      </button>
+      <button class="_save-recipe" @click="addRecipe(), store.functionsShowAddRecipeForm()">
+        Close
+      </button>
+    </div>
   </div>
 </template>
 <script>
@@ -104,18 +98,11 @@ export default defineComponent({
     ])
 
     const addIngredient = () => {
-      editedRecipe.value[0].Ingredients.push({ name: '', quantity: 1 })
+      editedRecipe.value[0].Ingredients.push({ name: '', quantity: 1, text: '' })
     }
 
     const removeIngredient = (index) => {
       editedRecipe.value[0].Ingredients.splice(index, 1)
-    }
-    const addStep = () => {
-      editedRecipe.value[0].recipeDetailSteps.push('')
-    }
-
-    const removeStep = (index) => {
-      editedRecipe.value[0].recipeDetailSteps.splice(index, 1)
     }
 
     const showAddRecipeForm = ref(false)
@@ -123,17 +110,13 @@ export default defineComponent({
       store.addRecipeDetails(editedRecipe.value)
       editedRecipe.value = []
     }
-    const showApiRecipeForm = ref(false)
     return {
       showAddRecipeForm,
       store,
       editedRecipe,
       addRecipe,
       addIngredient,
-      removeIngredient,
-      addStep,
-      removeStep,
-      showApiRecipeForm
+      removeIngredient
     }
   }
 })
