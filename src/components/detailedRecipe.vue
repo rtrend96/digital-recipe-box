@@ -35,16 +35,18 @@
         </div>
       </div>
     </div>
-    <div
-      class="_ingredient-wrapper"
-      v-for="(item, index) of store.detailRecipes.Ingredients"
-      :key="index"
-    >
-      <div>
-        {{ item.food }}
+    <div class="list-container">
+      <div class="list">
+        <h2>Food Item List:</h2>
+        <ul v-for="(item, index) of store.detailRecipes.Ingredients" :key="index">
+          <li>{{ item.food }}</li>
+        </ul>
       </div>
-      <div>
-        {{ item.text }}
+      <div class="list">
+        <h2>Quantity and Recipe Steps</h2>
+        <ul v-for="(item, index) of store.detailRecipes.Ingredients" :key="index">
+          <li>{{ item.text }}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -95,5 +97,27 @@ p {
   gap: 30px;
   align-items: baseline;
   justify-content: space-evenly;
+}
+
+.list-container {
+  display: flex; /* Use flexbox to align elements */
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 420px;
+}
+.list {
+  width: 50%; /* Each list takes up 50% of the container */
+  padding: 10px; /* Add padding for spacing */
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f7f8fa;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(209, 207, 207);
 }
 </style>
