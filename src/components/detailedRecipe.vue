@@ -35,11 +35,17 @@
         </div>
       </div>
     </div>
-
-    <div v-for="(item, index) of store.detailRecipes.Ingredients" :key="index">
-      {{ item.food }}
-      {{ item.quantity }}
-      {{ item.text }}
+    <div
+      class="_ingredient-wrapper"
+      v-for="(item, index) of store.detailRecipes.Ingredients"
+      :key="index"
+    >
+      <div>
+        {{ item.food }}
+      </div>
+      <div>
+        {{ item.text }}
+      </div>
     </div>
   </div>
 </template>
@@ -83,5 +89,11 @@ p {
   color: #000;
   font-weight: bold;
   font-size: 1.2rem;
+}
+._ingredient-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: baseline;
+  justify-content: space-evenly;
 }
 </style>
