@@ -49,6 +49,7 @@
         </ul>
       </div>
     </div>
+    <button class="_close-recipe" @click="store.functionCloseDetailRecipe()">Close</button>
   </div>
 </template>
 <script>
@@ -119,5 +120,20 @@ p {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(209, 207, 207);
+}
+._close-recipe {
+  border: none;
+  outline: none;
+  background-color: #3e7ed1;
+  color: #fff;
+  padding: 20px 40px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 40px;
+  float: right;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
 </style>

@@ -76,6 +76,9 @@ export const recipeDetailsStore = defineStore(
       showDetailRecipe.value = true
       detailRecipes.value = recipeDetails.value[value]
     }
+    const functionCloseDetailRecipe = () => {
+      showDetailRecipe.value = false
+    }
     return {
       recipeDetails,
       addRecipeDetails,
@@ -86,7 +89,8 @@ export const recipeDetailsStore = defineStore(
       addRecipeDetailsFromApi,
       showDetailRecipe,
       functionShowDetailRecipe,
-      detailRecipes
+      detailRecipes,
+      functionCloseDetailRecipe
     }
   },
   { persist: true }
