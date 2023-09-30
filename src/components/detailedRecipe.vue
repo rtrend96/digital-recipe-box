@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="list-container">
-      <div class="list">
+      <div class="list" id="Ingredients">
         <h2>Food Item List:</h2>
         <ul v-for="(item, index) of store.detailRecipes.Ingredients" :key="index">
           <li>{{ item.food }}</li>
@@ -49,17 +49,31 @@
         </ul>
       </div>
     </div>
+    <button class="export-recipe" @click="exportIngredients(store.detailRecipes.recipeName)">
+      Print Ingredients
+    </button>
     <button class="_close-recipe" @click="store.functionCloseDetailRecipe()">Close</button>
   </div>
 </template>
 <script>
 import { defineComponent } from 'vue'
 import { recipeDetailsStore } from '../stores/recipeModule'
+import domToPdf from 'dom-to-pdf'
 
 export default defineComponent({
   setup() {
     const store = recipeDetailsStore()
-    return { store }
+    const exportIngredients = (value) => {
+      setTimeout(() => {
+        const element = document.getElementById('Ingredients')
+        const options = {
+          filename: `${value}-insights.pdf`
+        }
+        domToPdf(element, options, () => {})
+      }, 500)
+      console.log('o/p→')
+    }
+    return { store, exportIngredients }
   }
 })
 </script>
@@ -120,6 +134,20 @@ p {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(209, 207, 207);
+}
+.export-recipe {
+  border: none;
+  outline: none;
+  background-color: #3e7ed1;
+  color: #fff;
+  padding: 20px 40px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-right: 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
 ._close-recipe {
   border: none;
