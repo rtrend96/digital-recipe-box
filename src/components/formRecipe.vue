@@ -84,7 +84,6 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   setup() {
     const store = recipeDetailsStore()
-
     const editedRecipe = ref([
       {
         recipeName: 'Biryani',
@@ -96,15 +95,12 @@ export default defineComponent({
         recipeDetailSteps: ['']
       }
     ])
-
     const addIngredient = () => {
       editedRecipe.value[0].Ingredients.push({ name: '', quantity: 1, text: '' })
     }
-
     const removeIngredient = (index) => {
       editedRecipe.value[0].Ingredients.splice(index, 1)
     }
-
     const showAddRecipeForm = ref(false)
     function addRecipe() {
       store.addRecipeDetails(editedRecipe.value)
@@ -131,7 +127,6 @@ export default defineComponent({
 ._form {
   display: flex;
   flex-direction: column;
-
   overflow: scroll;
   overflow-x: hidden;
   height: 550px;
@@ -168,7 +163,6 @@ export default defineComponent({
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
-
 ._form .text {
   text-align: center;
   font-size: 41px;
@@ -297,7 +291,7 @@ form .form-row .textarea {
     padding: 10px 0 0 0;
   }
   .container form .form-row {
-    display: block;
+    display: flex;
   }
   form .form-row .input-data {
     margin: 35px 0 !important;

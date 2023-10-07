@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="_main-form">
     <div class="_search-nav">
       <input type="text" class="searchTerm" placeholder="Are you hungry?" v-model="searchValue" />
       <button type="submit" class="btn" @click="getResultValue(searchValue)">Search Recipe</button>
@@ -144,5 +144,13 @@ img {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(209, 207, 207);
+}
+@media (max-width: 678px) {
+  ._card-wrapper {
+    width: 100%;
+  }
+  ._main-form {
+    margin-top: 40px;
+  }
 }
 </style>

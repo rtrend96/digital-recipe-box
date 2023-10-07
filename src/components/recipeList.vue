@@ -97,4 +97,10 @@ h1 {
   margin-top: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
 }
+@media (max-width: 678px) {
+  /* … */
+  ._add-recipe-list {
+    width: 100%;
+  }
+}
 </style>
