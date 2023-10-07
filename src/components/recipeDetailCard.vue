@@ -14,7 +14,9 @@
       <div class="info">
         <h1>{{ recipe.recipeName }}</h1>
         <p>{{ recipe.category }}-{{ recipe.cuisineType }}</p>
-        <button class="btn" @click="store.functionShowDetailRecipe(recipe.id)">view recipe</button>
+        <button class="btn" @click="store.functionShowDetailRecipe(RecipeIndex)">
+          view recipe
+        </button>
       </div>
     </div>
   </div>
@@ -36,18 +38,19 @@ export default defineComponent({
   background-color: #fff;
   position: relative;
   display: flex;
-  grid-template-columns: 300px 500px;
+  grid-template-columns: 100px 100px;
   border-radius: 5px;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
   margin-bottom: 30px;
 }
 img {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 5px 0 0 5px;
 }
 .info {
-  padding: 40px 40px 0;
+  margin-left: 5px;
+  margin-right: 5px;
   h1 {
     color: #351897;
     font-weight: 400;
@@ -64,14 +67,14 @@ img {
 .btn {
   position: absolute;
   bottom: -20px;
-  right: -20px;
+  right: -5px;
   border: none;
   outline: none;
   display: flex;
   align-items: center;
   background-color: #fc9400;
   color: #fff;
-  padding: 22px 45px;
+  padding: 5px 10px;
   font-size: 1rem;
   text-transform: uppercase;
   border-radius: 5px;

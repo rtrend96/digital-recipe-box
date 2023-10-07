@@ -2,7 +2,7 @@
   <div class="_home-wrapper">
     <navBar />
     <userName />
-    <recipeList />
+    <recipeList class="_recipe-list" />
   </div>
 </template>
 
@@ -21,3 +21,13 @@ export default defineComponent({
   }
 })
 </script>
+<style>
+._home-wrapper {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 15px solid rgb(255, 255, 255);
+}
+</style>

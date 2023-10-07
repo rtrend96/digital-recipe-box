@@ -78,6 +78,7 @@ export const recipeDetailsStore = defineStore(
     }
     const functionCloseDetailRecipe = () => {
       showDetailRecipe.value = false
+      detailRecipes.value = []
     }
     return {
       recipeDetails,

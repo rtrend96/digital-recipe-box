@@ -11,5 +11,6 @@ import { RouterView } from 'vue-router'
 <style scoped>
 .app {
   width: 100%;
+  display: flex;
 }
 </style>

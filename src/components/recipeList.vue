@@ -1,22 +1,25 @@
 <template>
-  <div class="_recipe-List-wrapper">
-    <h1>All recipeList</h1>
-    <recipeDetailCard />
-  </div>
-  <div v-show="store.showAddRecipeForm" class="_add-recipe-list">
-    <formRecipe />
-  </div>
-  <div v-show="store.showApiRecipeForm" class="_add-recipe-list">
-    <apiRecipe />
-  </div>
-  <div v-show="store.showDetailRecipe" class="_add-recipe-list">
-    <DetailedRecipe />
-  </div>
-  <div style="display: flex; gap: 20px">
-    <button class="_add-recipe" @click="store.functionsShowAddRecipeForm()">Add Recipe</button>
-    <button class="_add-recipe" @click="store.functionsShowApiRecipeForm()">
-      Add Recipe from APi's
-    </button>
+  <div class="_recipe-list-wrapper">
+    <div class="_recipe-component">
+      <h1>All recipeList</h1>
+      <recipeDetailCard class="_recipe-list-card" />
+
+      <div v-show="store.showAddRecipeForm" class="_add-recipe-list">
+        <formRecipe />
+      </div>
+      <div v-show="store.showApiRecipeForm" class="_add-recipe-list">
+        <apiRecipe />
+      </div>
+      <div v-show="store.showDetailRecipe" class="_add-recipe-list">
+        <DetailedRecipe />
+      </div>
+    </div>
+    <div class="_btn-group">
+      <button class="_add-recipe" @click="store.functionsShowAddRecipeForm()">Add Recipe</button>
+      <button class="_add-recipe" @click="store.functionsShowApiRecipeForm()">
+        Add Recipe from APi's
+      </button>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,23 @@ export default defineComponent({
 <style scoped>
 ._recipe-list-wrapper {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
+._recipe-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+h1 {
+  align-self: center;
+}
+._recipe-list-card {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 ._add-recipe-list {
   position: absolute;
   top: 50%;
@@ -56,6 +75,13 @@ export default defineComponent({
   border-radius: 10px;
   align-items: center;
   padding: 20px;
+}
+._btn-group {
+  display: flex;
+  gap: 20px;
+  float: left;
+  align-self: flex-end;
+  margin-bottom: 20px;
 }
 ._add-recipe {
   border: none;
