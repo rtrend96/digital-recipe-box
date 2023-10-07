@@ -60,7 +60,8 @@ h1 {
 }
 ._recipe-list-card {
   display: flex;
-  justify-content: space-evenly;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 ._add-recipe-list {
